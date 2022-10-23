@@ -3,3 +3,7 @@ streamlit-lottie
 pandas
 pytesseract
 tesseract
+matplotlib
+altair
+scipy
+pillow

@@ -1,7 +1,5 @@
-from email import charset
 import re
 import random
-from xml.dom.pulldom import CHARACTERS
 import matplotlib.pyplot as plt
 import numpy as np
 import altair as alt
@@ -64,7 +62,7 @@ def make_density(user_cost, avg, std, etype):
             y="density:Q",
         )
     )
-    vertline = alt.Chart(df).mark_rule(color="#304D6D").encode(x=alt.X("user:Q"))
+    vertline = alt.Chart(df).mark_rule(color='white').encode(x=alt.X("user:Q"))
 
     text = (
         alt.Chart()
