@@ -8,6 +8,9 @@ The web app, Clothes4Good adopts a image-to-text techinique that allows users to
 
 You may wonder what is the relationship between clothing and water waste, in fact, the textile and apparel industry is one of the largest consumers of water in manufacturing given the textile wet-processing. 
 
+![cover picture](https://user-images.githubusercontent.com/58792/191573025-72d39f65-4dbb-4cd5-b4a3-80f6f45ff05e.png](https://user-images.githubusercontent.com/112578755/197400224-e76fc971-10ea-4308-8717-b6581665ed1e.png)
+
+
 #### Project Flow
 1. (Automatically) Devcontainter files will use Makefile, and requirements.txt to configure the workspace.
 2. Image-to-Text technique enacted, we adopt `tesseract` packages.
