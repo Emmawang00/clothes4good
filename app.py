@@ -1,10 +1,26 @@
 import json
+import re
 import requests
 import streamlit as st
 import pandas as pd
 import numpy as np
+import pytesseract
+from image_text import extract_textile
 from PIL import Image
 from streamlit_lottie import st_lottie
+
+dictionary = {
+    "flax": "flax",
+    "cotton": "cotton",
+    "coton": "cotton",
+    "wool": "wool",
+    "viscose": "viscose",
+    "polypropylene": "polypropylene",
+    "polyester": "polyester",
+    "acrylic": "acrylic",
+    "nylon": "nylon",
+    "hemp": "hemp",
+}
 
 
 def load_lottieurl(url: str):
@@ -42,6 +58,8 @@ img_file_buffer = st.camera_input("")
 if img_file_buffer is not None:
     # To read image file buffer as a PIL Image:
     img = Image.open(img_file_buffer)
+    processed_image = pytesseract.image_to_string(img)
+    materials = extract_textile(processed_image, dictionary)
 
 st.subheader("Tell us more about this item 👑!")
 
@@ -71,3 +89,4 @@ with col2:
         options=["Kids", "Small", "Medium", "Large", "Extra Large"],
     )
 
+st.write(materials)

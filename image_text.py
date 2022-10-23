@@ -43,16 +43,17 @@ def extract_textile(raw_text, textile_dict):
             else:
                 continue
     if sum(fabric.values()) != 100:
-        return f"take a picture of the label again"
+        return "take a picture of the label again"
     else:
         return fabric
 
 
-def main(image_path, textile_dict):
+def get_dict(image_path, textile_dict):
+    """get the dictionary of the fabric"""
     data_eng = process_image(image_path)
     dic = extract_textile(data_eng, textile_dict)
     return dic
 
 
 if __name__ == "__main__":
-    print(main(PATH, dictionary))
+    print(get_dict(PATH, dictionary))
