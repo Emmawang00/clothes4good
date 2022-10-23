@@ -61,7 +61,6 @@ if img_file_buffer is not None:
     img = Image.open(img_file_buffer)
     processed_image = pytesseract.image_to_string(img)
     materials = extract_textile(processed_image, dictionary)
-    st.write(materials)
 
 st.subheader("Tell us more about this item 👑!")
 
@@ -90,18 +89,38 @@ with col2:
         "What is the size?",
         options=["Kids", "Small", "Medium", "Large", "Extra Large"],
     )
+
+file = st.file_uploader("Upload a picture of the item", type=["png", "jpg", "jpeg"])
+if file is not None:
+    # To read image file buffer as a PIL Image:
+    pytesseract.pytesseract.tesseract_cmd = r"/usr/bin/tesseract"
+    img = Image.open(file, mode="r")
+    processed_image = pytesseract.image_to_string(img)
+    materials = extract_textile(processed_image, dictionary)
+    st.write(materials)
+
 # Get the weight matrix
 weight = pd.read_csv("cloth_type.csv", index_col=0) / 1000
 # Get the material matrix
 footprint = pd.read_csv("material_cost.csv", index_col=0)
+
 # Get the specific weight of the clothing
-clothing_weight = weight.loc['T-Shirt', "Small"]
+if (genre is not None) & (size is not None):
+    clothing_weight = weight.loc[genre, size]
 
 # Get the specific footprint of the clothing
-total_footprint = {"energy": 0, "co2": 0, "water": 0}
-for mat, percent in materials.items():
-    for cost_type in total_footprint.keys():
-        total_footprint[cost_type] += round(
-            clothing_weight * percent * footprint.loc[mat, cost_type]
-        )
-st.write(total_footprint)
+if materials is not None:
+    total_footprint = {"energy": 0, "co2": 0, "water": 0}
+    for mat, percent in materials.items():
+        for cost_type in total_footprint.keys():
+            total_footprint[cost_type] += round(
+                clothing_weight * percent * footprint.loc[mat, cost_type]
+            )
+
+st.subheader("Here is the environmental footprint of your purchase 🌲🌳 ")
+
+col1, col2 = st.columns(2)
+with col1:
+    st.write(
+        f"The {genre} require a total of", total_footprint["energy"], "killowat-hours."
+    )
