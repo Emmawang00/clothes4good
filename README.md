@@ -8,7 +8,7 @@ The web app, Clothes4Good adopts a image-to-text techinique that allows users to
 
 You may wonder what is the relationship between clothing and water waste, in fact, the textile and apparel industry is one of the largest consumers of water in manufacturing given the textile wet-processing. 
 
-![cover picture](https://user-images.githubusercontent.com/58792/191573025-72d39f65-4dbb-4cd5-b4a3-80f6f45ff05e.png)
+![cover picture](https://github.com/nogibjj/clothes4good/issues/1#issue-1419827715)
 
 
 #### Project Flow
