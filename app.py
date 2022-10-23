@@ -90,7 +90,6 @@ with col2:
         "What is the size?",
         options=["Kids", "Small", "Medium", "Large", "Extra Large"],
     )
-materials = {'cotton': 80, 'polyester': 20}
 # Get the weight matrix
 weight = pd.read_csv("cloth_type.csv", index_col=0) / 1000
 # Get the material matrix
@@ -102,8 +101,7 @@ clothing_weight = weight.loc['T-Shirt', "Small"]
 total_footprint = {"energy": 0, "co2": 0, "water": 0}
 for mat, percent in materials.items():
     for cost_type in total_footprint.keys():
-        total_footprint["cost_type"] += (
-            clothing_weight * percent * footprint.loc[mat, "cost_type"]
+        total_footprint[cost_type] += round(
+            clothing_weight * percent * footprint.loc[mat, cost_type]
         )
-print(total_footprint)
 st.write(total_footprint)
