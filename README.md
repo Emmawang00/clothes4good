@@ -8,6 +8,7 @@ The web app, Clothes4Good adopts a image-to-text techinique that allows users to
 
 You may wonder what is the relationship between clothing and water waste, in fact, the textile and apparel industry is one of the largest consumers of water in manufacturing given the textile wet-processing. 
 
+
 #### Project Flow
 1. (Automatically) Devcontainter files will use Makefile, and requirements.txt to configure the workspace.
 2. Image-to-Text technique enacted, we adopt `tesseract` packages.
@@ -15,6 +16,10 @@ You may wonder what is the relationship between clothing and water waste, in fac
 4. Web App Build-up by using `Streamlit`.
 5. (Deploy) The Streamlit web app will be deployed on `Heruko` web service.
 6. Report Generations with charts and interactive sentences based on user input!
+
+#### Deployment in Real Life, Try it!
+
+[Clothes4Good](https://clothes4good.herokuapp.com)
 
 #### Data Source
 https://oecotextiles.blog/2009/06/16/what-is-the-energy-profile-of-the-textile-industry
