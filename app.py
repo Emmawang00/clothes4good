@@ -57,7 +57,7 @@ img_file_buffer = st.camera_input("")
 
 if img_file_buffer is not None:
     # To read image file buffer as a PIL Image:
-    pytesseract.pytesseract.tesseract_cmd = r""/app/.apt/usr/bin/tesseract""
+    pytesseract.pytesseract.tesseract_cmd = r"/app/.apt/usr/bin/tesseract"
     img = Image.open(img_file_buffer)
     processed_image = pytesseract.image_to_string(img)
     materials = extract_textile(processed_image, dictionary)
