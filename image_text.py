@@ -17,9 +17,7 @@ dictionary = {
 }
 
 
-pytesseract.pytesseract.tesseract_cmd = (
-    r"/home/codespace/venv/lib/python3.8/site-packages/tesseract/tesseract"
-)
+pytesseract.pytesseract.tesseract_cmd = r"/usr/bin/tesseract"
 
 
 def process_image(iamge_name, lang_code="eng"):
@@ -57,4 +55,4 @@ def main(image_path, textile_dict):
 
 
 if __name__ == "__main__":
-    main(PATH, dictionary)
+    print(main(PATH, dictionary))
