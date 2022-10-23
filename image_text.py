@@ -2,8 +2,8 @@ from PIL import Image
 import pytesseract
 import re
 
-path = "/Users/yayun/Downloads/IMG_3385.jpg"
-dict = {
+PATH = "IMG_3385.jpg"
+dictionary = {
     "flax": "flax",
     "cotton": "cotton",
     "coton": "cotton",
@@ -17,17 +17,21 @@ dict = {
 }
 
 
-pytesseract.pytesseract.tesseract_cmd = r"/opt/homebrew/bin/tesseract"
+pytesseract.pytesseract.tesseract_cmd = (
+    r"/home/codespace/venv/lib/python3.8/site-packages/tesseract/tesseract"
+)
 
 
 def process_image(iamge_name, lang_code="eng"):
+    """process the image as a string"""
     return pytesseract.image_to_string(Image.open(iamge_name), lang=lang_code)
 
 
 def extract_textile(raw_text, textile_dict):
+    """extract the type of textile from the raw text"""
     fabric = {}
     raw_list = raw_text.lower().split("\n")
-    for i in range(len(raw_list)):
+    for i, _ in enumerate(raw_list):
         for j in textile_dict.keys():
             if j in raw_list[i]:
                 pattern = r"[0-9]{1,3}(?=%)"
@@ -53,4 +57,4 @@ def main(image_path, textile_dict):
 
 
 if __name__ == "__main__":
-    main(path, dict)
+    main(PATH, dictionary)
