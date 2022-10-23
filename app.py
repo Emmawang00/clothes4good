@@ -57,6 +57,7 @@ img_file_buffer = st.camera_input("")
 
 if img_file_buffer is not None:
     # To read image file buffer as a PIL Image:
+    pytesseract.pytesseract.tesseract_cmd = r"/usr/bin/tesseract"
     img = Image.open(img_file_buffer)
     processed_image = pytesseract.image_to_string(img)
     materials = extract_textile(processed_image, dictionary)
@@ -89,4 +90,11 @@ with col2:
         options=["Kids", "Small", "Medium", "Large", "Extra Large"],
     )
 
-st.write(materials)
+# Get the weight matrix
+weight = pd.read_csv("cloth_type.csv", index_col=0) / 1000
+# Get the material matrix
+footprint = pd.read_csv("material_cost.csv", index_col=0)
+# Get the specific weight of the clothing
+clothing_weight = weight.loc[genre, size]
+
+# Get the specific footprint of the clothing
