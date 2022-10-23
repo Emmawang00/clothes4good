@@ -61,6 +61,7 @@ if img_file_buffer is not None:
     img = Image.open(img_file_buffer)
     processed_image = pytesseract.image_to_string(img)
     materials = extract_textile(processed_image, dictionary)
+    st.write(materials)
 
 st.subheader("Tell us more about this item 👑!")
 
@@ -89,12 +90,20 @@ with col2:
         "What is the size?",
         options=["Kids", "Small", "Medium", "Large", "Extra Large"],
     )
-
+materials = {'cotton': 80, 'polyester': 20}
 # Get the weight matrix
 weight = pd.read_csv("cloth_type.csv", index_col=0) / 1000
 # Get the material matrix
 footprint = pd.read_csv("material_cost.csv", index_col=0)
 # Get the specific weight of the clothing
-clothing_weight = weight.loc[genre, size]
+clothing_weight = weight.loc['T-Shirt', "Small"]
 
 # Get the specific footprint of the clothing
+total_footprint = {"energy": 0, "co2": 0, "water": 0}
+for mat, percent in materials.items():
+    for cost_type in total_footprint.keys():
+        total_footprint["cost_type"] += (
+            clothing_weight * percent * footprint.loc[mat, "cost_type"]
+        )
+print(total_footprint)
+st.write(total_footprint)
