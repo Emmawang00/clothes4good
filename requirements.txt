@@ -2,4 +2,4 @@ streamlit
 streamlit-lottie
 pandas
 pytesseract
-tesseract
+pillow
