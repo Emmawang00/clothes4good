@@ -124,15 +124,6 @@ df_average = pd.DataFrame(
 dic_std = {"energy": 12, "co2": 5, "water": 200}
 
 
-def main_plot():
-    # test_user_cost= {"energy": 14, "co2": 6, "water": 120}
-    charts = plot_all(
-        {"energy": 14, "co2": 6, "water": 120}, "T-Shirt", df_average, dic_std
-    )
-    return charts
-
-
-
 #### Graphing requirements ####
 
 dictionary = {
