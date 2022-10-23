@@ -1,9 +1,9 @@
 streamlit
 streamlit-lottie
 pandas
-pytesseract
-tesseract
 matplotlib
 altair
 scipy
+pytesseract
 pillow
+
