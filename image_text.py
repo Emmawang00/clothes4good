@@ -49,7 +49,7 @@ def extract_textile(raw_text, textile_dict):
 def main(image_path, textile_dict):
     data_eng = process_image(image_path)
     dic = extract_textile(data_eng, textile_dict)
-    return
+    return dic
 
 
 if __name__ == "__main__":
